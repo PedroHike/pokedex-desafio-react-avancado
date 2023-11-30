@@ -1,11 +1,11 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const themes = {
     light: {
-        background: 'rgba(255, 225, 0, 0.646)',
+        background: '#ffff00',
         transform: 'translateX(0)',
-        border: '1px solid rgba(255, 225, 0)',
-        boxShadow: '0 0px 5px rgba(255, 225, 0)'
+        border: '2px solid #fff',
+        boxShadow: '0 0 3px #ffff00'
     },
 
     dark: {
@@ -19,10 +19,13 @@ export const themes = {
 
 export const ThemeContext = createContext({})
 
-export const ThemeProvider = (props)=>{
+export const ThemeProvider = ({children})=>{
+
+    const [theme, setTheme] = useState(themes.light)
+
     return(
-        <ThemeContext.Provider value={{themes}}>
-            {props.children}
+        <ThemeContext.Provider value={{theme, setTheme}}>
+            {children}
         </ThemeContext.Provider>
     )
 }

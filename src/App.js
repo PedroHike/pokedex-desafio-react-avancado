@@ -1,12 +1,14 @@
 import { ThemeProvider } from './contexts/theme-context.js';
-import { ThemeTogglerButton } from './components/theme-toggler-button/theme-toggler-button.js';
+import { Header } from './components/header/header.js';
+import { CardsList } from './components/card/card.js';
 
 
 
 function App() {
     return (
         <ThemeProvider>
-          <ThemeTogglerButton/>
+          <Header/>
+          <CardsList/>
         </ThemeProvider>
     )
 }
