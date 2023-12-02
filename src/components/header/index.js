@@ -1,7 +1,5 @@
 import styled from "styled-components"
-import React, { useContext } from "react"
-import { ThemeTogglerButton } from "../theme-toggler-button/theme-toggler-button"
-import { ThemeContext, themes} from '../../contexts/theme-context'
+import { ThemeTogglerButton } from "../theme-toggler-button"
 
 export const Header = ()=>{
 

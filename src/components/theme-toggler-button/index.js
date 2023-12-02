@@ -1,17 +1,16 @@
 import styled from "styled-components"
 import React, { useContext } from "react"
 import { ThemeContext, themes } from '../../contexts/theme-context'
-import { Button } from "../button/button"
+import { Button } from "../button"
 
 export const ThemeTogglerButton = () => {
     const { theme, setTheme } = useContext(ThemeContext)
-
+    
     return(
-        <Div>
-            <Button onClick={()=>{
-                setTheme(theme === themes.light ? themes.dark : themes.light);
-                console.log(theme.background);
-            }} theme={theme}/>
+        <Div theme={theme} onClick={()=>{
+            setTheme(theme === themes.light ? themes.dark : themes.light);
+        }}>
+            <Button />
         </Div>
     )
 }
@@ -23,23 +22,26 @@ const Div = styled.div`
     top: 20px;
     right: 20px;
     border-radius: 25px;
-    background-color: #c5e6f1;
-    box-shadow: 0 1px 2px #0000005d;
+    background-color: ${(props) => props.theme.togglerBg};
+    box-shadow: ${(props) => props.theme.skyBoxShadow};
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: 0.4s ease-in-out;
+    cursor: pointer;
 
     & .btn{
         z-index: 1;
-        background-color: ${theme.background};
-        transform: translateX(0);
+        background-color: ${(props) => props.theme.bgTheme};
+        transform: ${(props) => props.theme.transform};
         width:18px;
         height: 18px;
         border-radius: 50%;
         margin: 0 4px;
-        box-shadow: 0 0 3px #ffff00;
-        border: 2px solid #fff;
+        box-shadow: ${(props) => props.theme.boxShadow};
+        border: ${(props) => props.theme.border};
+        transition: 0.4s ease-in-out;
         cursor: pointer;
-        transition: 0.3s ease-in-out;
+        
 }
 `

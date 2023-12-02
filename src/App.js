@@ -1,14 +1,12 @@
 import { ThemeProvider } from './contexts/theme-context.js';
-import { Header } from './components/header/header.js';
-import { CardsList } from './components/card/card.js';
+import { Body } from './components/body/index.js';
 
 
 
 function App() {
     return (
         <ThemeProvider>
-          <Header/>
-          <CardsList/>
+          <Body/>
         </ThemeProvider>
     )
 }
