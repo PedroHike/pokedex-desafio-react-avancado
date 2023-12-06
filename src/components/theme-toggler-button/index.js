@@ -18,12 +18,12 @@ export const ThemeTogglerButton = () => {
 const Div = styled.div`
     width:50px;
     height: 25px;
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     border-radius: 25px;
-    background-color: ${(props) => props.theme.togglerBg};
-    box-shadow: ${(props) => props.theme.skyBoxShadow};
+    background-color: ${(props) => props.theme.btnToggler.togglerBg};
+    box-shadow: ${(props) => props.theme.btnToggler.skyBoxShadow};
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,14 +32,14 @@ const Div = styled.div`
 
     & .btn{
         z-index: 1;
-        background-color: ${(props) => props.theme.bgTheme};
-        transform: ${(props) => props.theme.transform};
+        background-color: ${(props) => props.theme.btnToggler.bgTheme};
+        transform: ${(props) => props.theme.btnToggler.transform};
         width:18px;
         height: 18px;
         border-radius: 50%;
         margin: 0 4px;
-        box-shadow: ${(props) => props.theme.boxShadow};
-        border: ${(props) => props.theme.border};
+        box-shadow: ${(props) => props.theme.btnToggler.boxShadow};
+        border: ${(props) => props.theme.btnToggler.border};
         transition: 0.4s ease-in-out;
         cursor: pointer;
         

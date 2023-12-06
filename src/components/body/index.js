@@ -18,7 +18,8 @@ export const Body = ()=>{
 }
 
 const StyledBody = styled.body`
-    background-color: ${(props) => props.theme.mainBg};
-    width: 100vw;
-
+    transition: 0.4s ease-in-out;
+    width: 100%;
+    height: 100%;
+    background-color: ${(props) => props.theme.background};
 `

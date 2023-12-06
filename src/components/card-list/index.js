@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+import React, { useContext } from "react"
+import { ThemeContext } from '../../contexts/theme-context'
+
 export const CardsList = () => {
+    const { theme } = useContext(ThemeContext)
+
     
     async function getPokemons(){
     
@@ -48,7 +53,7 @@ export const CardsList = () => {
                 {
                     list.cards.map((pokemon, index)=>{
                         return(
-                            <Li key={index}>
+                            <Li key={index} theme={theme}>
                                 <img src={pokemon.image}/>
                                 <H2>{pokemon.nome}</H2>
                             </Li>
@@ -59,7 +64,7 @@ export const CardsList = () => {
 
             <Btn onClick={()=>{
                 setQuantity(quantity+10)
-            }}> Carregar mais Pokemons</Btn>
+            }} theme={theme}> Carregar mais</Btn>
 
         </>
     )
@@ -72,20 +77,23 @@ const Ul = styled.ul`
     justify-content: center;
     flex-wrap: wrap;
     padding: 30px;
-    max-width: 970px;
+    max-width: 1170px;
 
 `
 
 const Li = styled.li`
     list-style: none;
     margin: 10px;
-    background-color: #ffff;
+    background-color: ${(props) => props.theme.cardBg};
+    color: ${(props) => props.theme.color};
     text-align: center;
+    text-transform: capitalize;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 3px 5px #0000005d;
+    box-shadow: 0 3px 5px ${(props)=> props.theme.color}5d;
     cursor: pointer;
     width: 160px;
+    transition: 0.4s ease-in-out;
 `
 const H2 = styled.h2`
     font-size: 20px;
@@ -95,10 +103,13 @@ const Btn = styled.button`
     margin: 0 0 50px;
     padding: 10px 15px;
     border-radius: 20px;
-    background-color: #D2E3C8;
-    font-family: 'Chakra Petch', sans-serif;
+    background-color: ${(props) => props.theme.btn.background};
+    color: ${(props) => props.theme.btn.color};
+    background-color: ;
     font-weight: 500;
-    box-shadow: 0 2px 5px #86A789;
+    border: 1px solid #ffff;
+    box-shadow: 0 2px 5px #aae6ec;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
+    transition: 0.4s ease-in-out;
 `
