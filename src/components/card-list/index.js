@@ -15,6 +15,7 @@ export const CardsList = () => {
     
         const pokemonData = await Promise.all(
         responseJson.results.map(async (infos)=>{
+            console.log(infos);
             const dataResponse = await (await fetch(infos.url)).json()
             
             return{
@@ -53,7 +54,9 @@ export const CardsList = () => {
                 {
                     list.cards.map((pokemon, index)=>{
                         return(
-                            <Li key={index} theme={theme}>
+                            <Li key={index} theme={theme} onClick={()=>{
+                                console.log(`clicou em ${pokemon.nome}`)
+                            }}>
                                 <img src={pokemon.image}/>
                                 <H2>{pokemon.nome}</H2>
                             </Li>
