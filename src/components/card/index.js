@@ -4,39 +4,114 @@ import styled from 'styled-components';
 import React, { useContext } from "react"
 import { ThemeContext } from '../../contexts/theme-context'
 
+import { getPokemon } from '../../services/pokemon';
+import { getMoves } from '../../services/moves';
+import { getAbilities } from '../../services/abilities';
+import { getTypes } from '../../services/type';
+
+import { pokemon } from '../objects/pokemon';
+
+const pokemonResponse = await getPokemon()
+const movesResponse = await getMoves()
+const abilitiesResponse = await getAbilities()
+const typesResponse = await getTypes()
+
+
+pokemon.setInfo(pokemonResponse)
+pokemon.setMoves(movesResponse)
+pokemon.setAbilities(abilitiesResponse)
+pokemon.setType(typesResponse)
+
+
+
+
 export const Pokemon = () => {
     const { theme } = useContext(ThemeContext)
 
-    
-    async function getPokemon(){
-        
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/bulbasaur`)
-        const responseJson = await response.json()
-        return{
-            nome: responseJson.species.name,
-            image: responseJson.sprites.front_default,
-            moves: responseJson.moves,
-            abilities: responseJson.abilities,
-            type: responseJson.types
-        }
-    };
 
-    const [pokemon, setPokemon] = useState({
-        data: []
+    const [info, setInfo] = useState({
+        data: pokemon
     })
 
     useEffect(()=>{
         const fetchData = async ()=>{
-            const data = await getPokemon();
-
-            setPokemon({
-                data: data
-            })            
+            setInfo({
+                data: pokemon
+                })
         }
         fetchData()
     },[])
-    console.log(pokemon);
+
+
+    return(
+        <Body>
+            <Card theme={theme}>
+                <Image>
+                    <Img src={info.data.image}/>
+                </Image>
+                <H2>{info.data.name}</H2>
+                <H3>Tipo</H3>
+                <Ul>
+                    {
+                        info.data.type.map((type, index)=>{
+                            return(
+                                
+                                <Li key={index}>{type}</Li>
+                            )
+                        })
+                    }
+                </Ul>
+                
+                <H3>Habilidades</H3>
+                <Ul>
+                    {
+                        info.data.abilities.map((abilities, index)=>{
+                            return(
+                                
+                                <Li key={index}>{abilities}</Li>
+                            )
+                        })
+                    }
+                </Ul>
+    
+                <H3>Movimentos</H3>
+                <Ul>
+                    {
+                        info.data.moves.map((moves, index)=>{
+                            return(
+                                
+                                <Li key={index}>{moves}</Li>
+                            )
+                        })
+                    }
+                </Ul>
+                
+            </Card>
+        </Body>
+    )
 }
+
+const Image = styled.div`
+    max-width: 200px;
+    max-height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    
+`
+
+const Img = styled.img`
+    min-width: 200%;
+    object-fit: cover;
+`
+
+
+const Body = styled.div`
+    height: 100vh;
+    display: flex;
+    align-items: center;
+`
 
 const Ul = styled.ul`
     margin: 0 auto;
@@ -44,14 +119,12 @@ const Ul = styled.ul`
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 30px;
     max-width: 1170px;
 
 `
 
-const Li = styled.li`
+const Card = styled.li`
     list-style: none;
-    margin: 10px;
     background-color: ${(props) => props.theme.cardBg};
     color: ${(props) => props.theme.color};
     text-align: center;
@@ -59,25 +132,19 @@ const Li = styled.li`
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 3px 5px ${(props)=> props.theme.color}5d;
-    cursor: pointer;
-    width: 160px;
+    max-width: 700px;
     transition: 0.4s ease-in-out;
+    margin: auto;
 `
 const H2 = styled.h2`
     font-size: 20px;
 `
-const Btn = styled.button`
-    border: none;
-    margin: 0 0 50px;
-    padding: 10px 15px;
-    border-radius: 20px;
-    background-color: ${(props) => props.theme.btn.background};
-    color: ${(props) => props.theme.btn.color};
-    background-color: ;
-    font-weight: 500;
-    border: 1px solid #ffff;
-    box-shadow: 0 2px 5px #aae6ec;
-    cursor: pointer;
+const H3 = styled.h2`
     font-size: 16px;
-    transition: 0.4s ease-in-out;
+    margin-top: 10px;
+`
+
+const Li = styled.li`
+    list-style: none;
+    margin: 0 10px;
 `
