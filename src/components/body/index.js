@@ -5,19 +5,19 @@ import { CardsList } from "../card-list"
 import React, { useContext } from "react"
 import { ThemeContext } from '../../contexts/theme-context'
 
-export const Body = ()=>{
+export const HomePage = ()=>{
     const { theme } = useContext(ThemeContext)
 
     return(
-        <StyledBody theme={theme}>
+        <StyledDiv theme={theme}>
             <Header/>
             <CardsList/>
-        </StyledBody>
+        </StyledDiv>
     )
     
 }
 
-const StyledBody = styled.body`
+const StyledDiv = styled.div`
     transition: 0.4s ease-in-out;
     width: 100%;
     height: 100%;

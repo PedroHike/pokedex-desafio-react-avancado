@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { Body } from "../body"
+import { HomePage } from "../body"
+import { Pokemon } from "../pokemon"
 
 export const AppRoutes = () => (
     <BrowserRouter>
         <Routes>
-            <Route exact path='/' element={<Body/>}/>
-            <Route exact path='/:id' element={<Body/>}/>
+            <Route exact path='/' element={<HomePage/>}/>
+            <Route exact path='/pokemon/:id' element={<Pokemon/>}/>
         </Routes>
     </BrowserRouter>
 )

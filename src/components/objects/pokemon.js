@@ -1,12 +1,14 @@
 export let pokemon = {
-    image : '',
+    image: '',
+    animatedImage : '',
     name : '',
     moves: [],
     abilities: [],
     type: [],
 
     setInfo(response){
-        this.image = response.sprites.front_default
+        this.animatedImage = response.sprites.versions["generation-v"]["black-white"].animated.front_default
+        this.image = response.sprites.other.dream_world.front_default
         this.name = response.name
     },
 

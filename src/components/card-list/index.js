@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 import React, { useContext } from "react"
 import { ThemeContext } from '../../contexts/theme-context'
 
@@ -12,18 +14,15 @@ export const CardsList = () => {
     
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${quantity}`)
         const responseJson = await response.json()
-    
+
+        
         const pokemonData = await Promise.all(
-        responseJson.results.map(async (infos)=>{
-            console.log(infos);
-            const dataResponse = await (await fetch(infos.url)).json()
+            responseJson.results.map(async (infos)=>{
+                const dataResponse = await (await fetch(infos.url)).json()
             
             return{
-                nome: infos.name,
-                image: dataResponse.sprites.front_default,
-                moves: dataResponse.moves,
-                abilities: dataResponse.abilities,
-                type: dataResponse.types
+                name: infos.name,
+                image: dataResponse.sprites.versions["generation-v"]["black-white"].animated.front_default
             };
         })
     
@@ -40,7 +39,6 @@ export const CardsList = () => {
     useEffect(()=>{
         const fetchData = async ()=>{
             const data = await getPokemons();
-
             setList({
                 cards: data
             })            
@@ -54,12 +52,12 @@ export const CardsList = () => {
                 {
                     list.cards.map((pokemon, index)=>{
                         return(
-                            <Li key={index} theme={theme} onClick={()=>{
-                                console.log(`clicou em ${pokemon.nome}`)
-                            }}>
-                                <img src={pokemon.image}/>
-                                <H2>{pokemon.nome}</H2>
-                            </Li>
+                            <StyledLink to = {`/pokemon/${pokemon.name}`} key={index} >
+                                <Li theme={theme}>
+                                    <img src={pokemon.image}/>
+                                    <H2>{pokemon.name}</H2>
+                                </Li>
+                            </StyledLink>
                         )
                     })
                 }
@@ -72,6 +70,12 @@ export const CardsList = () => {
         </>
     )
 }
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    font-weight: 500;
+    color: #000;
+`
 
 const Ul = styled.ul`
     margin: 0 auto;
@@ -89,17 +93,22 @@ const Li = styled.li`
     margin: 10px;
     background-color: ${(props) => props.theme.cardBg};
     color: ${(props) => props.theme.color};
-    text-align: center;
     text-transform: capitalize;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 3px 5px ${(props)=> props.theme.color}5d;
     cursor: pointer;
-    width: 160px;
+    height: 100px;
     transition: 0.4s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
 `
 const H2 = styled.h2`
-    font-size: 20px;
+    font-size: 16px;
+    text-decoration: none;
 `
 const Btn = styled.button`
     border: none;

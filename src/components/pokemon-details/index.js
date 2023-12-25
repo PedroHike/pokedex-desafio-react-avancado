@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { Link, useParams } from 'react-router-dom';
 
 import React, { useContext } from "react"
 import { ThemeContext } from '../../contexts/theme-context'
@@ -11,30 +12,29 @@ import { getTypes } from '../../services/type';
 
 import { pokemon } from '../objects/pokemon';
 
-const pokemonResponse = await getPokemon()
-const movesResponse = await getMoves()
-const abilitiesResponse = await getAbilities()
-const typesResponse = await getTypes()
 
-
-pokemon.setInfo(pokemonResponse)
-pokemon.setMoves(movesResponse)
-pokemon.setAbilities(abilitiesResponse)
-pokemon.setType(typesResponse)
-
-
-
-
-export const Pokemon = () => {
+export const PokemonDetails = () => {
     const { theme } = useContext(ThemeContext)
-
-
+    
+    const {id} = useParams()
+    
     const [info, setInfo] = useState({
         data: pokemon
     })
-
+    
     useEffect(()=>{
         const fetchData = async ()=>{
+
+            const pokemonResponse = await getPokemon(id)
+            const movesResponse = await getMoves(id)
+            const abilitiesResponse = await getAbilities(id)
+            const typesResponse = await getTypes(id)
+            
+            pokemon.setInfo(pokemonResponse)
+            pokemon.setMoves(movesResponse)
+            pokemon.setAbilities(abilitiesResponse)
+            pokemon.setType(typesResponse)
+
             setInfo({
                 data: pokemon
                 })
@@ -45,12 +45,12 @@ export const Pokemon = () => {
 
     return(
         <Body>
+            <StyledLink to='/'>Voltar para Home</StyledLink>
             <Card theme={theme}>
                 <Image>
                     <Img src={info.data.image}/>
                 </Image>
                 <H2>{info.data.name}</H2>
-                <H3>Tipo</H3>
                 <Ul>
                     {
                         info.data.type.map((type, index)=>{
@@ -68,7 +68,11 @@ export const Pokemon = () => {
                         info.data.abilities.map((abilities, index)=>{
                             return(
                                 
-                                <Li key={index}>{abilities}</Li>
+                                <Li key={index}>
+                                    <h4>{abilities.name}</h4>
+                                    <p>{abilities.description}</p>
+                                
+                                </Li>
                             )
                         })
                     }
@@ -91,9 +95,14 @@ export const Pokemon = () => {
     )
 }
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    font-weight: 500;
+    color: #000;
+`
+
+
 const Image = styled.div`
-    max-width: 200px;
-    max-height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,15 +111,12 @@ const Image = styled.div`
 `
 
 const Img = styled.img`
-    min-width: 200%;
     object-fit: cover;
 `
 
 
 const Body = styled.div`
     height: 100vh;
-    display: flex;
-    align-items: center;
 `
 
 const Ul = styled.ul`
