@@ -15,6 +15,7 @@ export const Header = ()=>{
 
 const Img = styled.img`
     width: 300px;
-    margin: 30px;
+    margin-top: 30px;
+    align-self: center:
 `
 

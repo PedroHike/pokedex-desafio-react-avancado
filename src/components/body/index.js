@@ -19,7 +19,8 @@ export const HomePage = ()=>{
 
 const StyledDiv = styled.div`
     transition: 0.4s ease-in-out;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    min-height: 100vh;
     background-color: ${(props) => props.theme.background};
+    text-align: center
 `

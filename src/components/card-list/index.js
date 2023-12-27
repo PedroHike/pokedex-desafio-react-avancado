@@ -19,7 +19,6 @@ export const CardsList = () => {
         const pokemonData = await Promise.all(
             responseJson.results.map(async (infos)=>{
                 const dataResponse = await (await fetch(infos.url)).json()
-            
             return{
                 name: infos.name,
                 image: dataResponse.sprites.versions["generation-v"]["black-white"].animated.front_default
@@ -58,9 +57,7 @@ export const CardsList = () => {
                                         <img src={pokemon.image}/>
                                     </DivImg>
                                     <Name>{pokemon.name}</Name>
-                                    <Subtitle>_ _ __</Subtitle>
-                                    <Subtitle>__ _ _</Subtitle>
-                                    <Subtitle>_ ___ _ ___</Subtitle>
+                                    <Subtitle>__ _ ___ _ _____ _ _ __ __ _ __ _ ___ ____ _ __ _ __ __ _ ___ __ _ _ _ __ __</Subtitle>
                                 </Card>
                             </StyledLink>
                         )
@@ -82,27 +79,18 @@ const Ul = styled.ul`
     justify-content: center;
     flex-wrap: wrap;
     padding: 30px;
-    max-width: 1170px;
+    max-width: 750px;
 `
 
 const StyledLink = styled(Link)`
     text-decoration: none;
     color: #000;
 `
-const DivImg = styled.div`
-    background-color: #e0e0e0;
-    width: 110px;
-    height: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-top-right-radius: 6px;
-    border-top-left-radius: 6px;
-`
 
 const Card = styled.li`
     list-style: none;  
     margin: 5px;
+    width: 125px;
     background-color: ${(props) => props.theme.cardBg};
     color: ${(props) => props.theme.color};
     text-transform: capitalize;
@@ -116,16 +104,29 @@ const Card = styled.li`
     text-align: center;
 `
 
-const Name = styled.h2`
-    font-size: 14px;
-    margin: 10px
+const DivImg = styled.div`
+    background-color: #e0e0e0;
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    border: 2px solid rgb(149, 149, 149);
 `
 
-const Subtitle = styled.p`
+const Name = styled.h2`
+    font-size: 16px;
+    margin-top: 10px;
+    `
+    
+    const Subtitle = styled.p`
     text-align: start;
-    margin-left: 15px;
-    line-height: 6px;
-    font-weight: 300;    
+    padding: 5px 5px 0;
+    font-size: 16px;
+    font-weight: 200;
+    line-height: 5px;
 `
 
 const Btn = styled.button`

@@ -12,12 +12,17 @@ export const themes = {
             border: '2px solid #ffff',
             transform: 'translateX(0)',
         },
+
         cardBg: '#fff',
         color:'#000000',
         background: '#fafaf0',
         btn: {
             background: '#ffe60088',
             color: '#0391c5'
+        },
+
+        type: {
+            fire:'#ff5500'
         }
     },
 

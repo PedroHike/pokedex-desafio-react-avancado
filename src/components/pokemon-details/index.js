@@ -44,110 +44,132 @@ export const PokemonDetails = () => {
 
 
     return(
-        <Body>
-            <StyledLink to='/'>Voltar para Home</StyledLink>
+        <Container theme={theme}>
             <Card theme={theme}>
+                <Link to='/'>
+                    <Icon className="fas fa-arrow-circle-left" theme={theme}></Icon>
+                </Link>
                 <Image>
                     <Img src={info.data.image}/>
                 </Image>
-                <H2>{info.data.name}</H2>
-                <Ul>
-                    {
-                        info.data.type.map((type, index)=>{
-                            return(
-                                
-                                <Li key={index}>{type}</Li>
-                            )
-                        })
-                    }
-                </Ul>
-                
-                <H3>Habilidades</H3>
-                <Ul>
-                    {
-                        info.data.abilities.map((abilities, index)=>{
-                            return(
-                                
-                                <Li key={index}>
-                                    <h4>{abilities.name}</h4>
-                                    <p>{abilities.description}</p>
-                                
-                                </Li>
-                            )
-                        })
-                    }
-                </Ul>
-    
-                <H3>Movimentos</H3>
-                <Ul>
-                    {
-                        info.data.moves.map((moves, index)=>{
-                            return(
-                                
-                                <Li key={index}>{moves}</Li>
-                            )
-                        })
-                    }
-                </Ul>
+                <div>
+                    <Name>{info.data.name}</Name>
+                    <Ul>
+                        {
+                            info.data.type.map((type, index)=>{
+                                return(
+                                    
+                                    <Type key={index} theme={theme}>{type}</Type>
+                                )
+                            })
+                        }
+                    </Ul>
+                    
+                    <H3>Habilidades</H3>
+                    <Ul>
+                        {
+                            info.data.abilities.map((abilities, index)=>{
+                                return(
+                                    
+                                    <Li key={index}>
+                                        <h4>{abilities.name}</h4>
+                                        <p>{abilities.description}</p>
+                                    
+                                    </Li>
+                                )
+                            })
+                        }
+                    </Ul>
+        
+                    <H3>Movimentos</H3>
+                    <Ul>
+                        {
+                            info.data.moves.map((moves, index)=>{
+                                return(
+                                    
+                                    <Li key={index}>{moves}</Li>
+                                )
+                            })
+                        }
+                    </Ul>
+                </div>
                 
             </Card>
-        </Body>
+        </Container>
     )
 }
 
-const StyledLink = styled(Link)`
-    text-decoration: none;
-    font-weight: 500;
-    color: #000;
+const Container = styled.div`
+    background-color: ${(props) => props.theme.mainBg};
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
+const Card = styled.div`
+    background-color: ${(props) => props.theme.cardBg};
+    color: ${(props) => props.theme.color};
+    text-align: center;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 3px 5px ${(props)=> props.theme.color}5d;
+    transition: 0.4s ease-in-out;
+    display: flex;
+`
+
+const Icon = styled.i`
+    color: ${(props)=> props.theme.color};
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+`
 
 const Image = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
-    
+    border-radius: 10px;
+    border: 2px solid rgb(149, 149, 149);
+    background-color: #e0e0e0;
+    width: 400px;
+    height: 350px;
 `
 
 const Img = styled.img`
     object-fit: cover;
+    width: 80%;
 `
 
-
-const Body = styled.div`
-    height: 100vh;
+const Name = styled.h2`
+    font-size: 40px;
+    text-transform: capitalize;
 `
 
 const Ul = styled.ul`
-    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    max-width: 1170px;
-
+    max-width: 400px;
 `
-
-const Card = styled.li`
+const Type = styled.li`
+    padding: 5px 20px;
     list-style: none;
-    background-color: ${(props) => props.theme.cardBg};
-    color: ${(props) => props.theme.color};
-    text-align: center;
-    text-transform: capitalize;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 3px 5px ${(props)=> props.theme.color}5d;
-    max-width: 700px;
-    transition: 0.4s ease-in-out;
-    margin: auto;
+    border-radius: 25px;
+    background-color: ${(props)=> props.theme.type.{type}};
+    text-transform: capitalize;x'
+    font-weight: 600;
+    color: #ffff;
+    margin: 5px;
 `
-const H2 = styled.h2`
-    font-size: 20px;
-`
+
 const H3 = styled.h2`
     font-size: 16px;
     margin-top: 10px;
+    text-transform: capitalize;
 `
 
 const Li = styled.li`
