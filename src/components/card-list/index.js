@@ -53,10 +53,15 @@ export const CardsList = () => {
                     list.cards.map((pokemon, index)=>{
                         return(
                             <StyledLink to = {`/pokemon/${pokemon.name}`} key={index} >
-                                <Li theme={theme}>
-                                    <img src={pokemon.image}/>
-                                    <H2>{pokemon.name}</H2>
-                                </Li>
+                                <Card theme={theme}>
+                                    <DivImg>
+                                        <img src={pokemon.image}/>
+                                    </DivImg>
+                                    <Name>{pokemon.name}</Name>
+                                    <Subtitle>_ _ __</Subtitle>
+                                    <Subtitle>__ _ _</Subtitle>
+                                    <Subtitle>_ ___ _ ___</Subtitle>
+                                </Card>
                             </StyledLink>
                         )
                     })
@@ -71,45 +76,58 @@ export const CardsList = () => {
     )
 }
 
-const StyledLink = styled(Link)`
-    text-decoration: none;
-    font-weight: 500;
-    color: #000;
-`
-
 const Ul = styled.ul`
     margin: 0 auto;
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     padding: 30px;
     max-width: 1170px;
-
 `
 
-const Li = styled.li`
-    list-style: none;
-    margin: 10px;
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: #000;
+`
+const DivImg = styled.div`
+    background-color: #e0e0e0;
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+`
+
+const Card = styled.li`
+    list-style: none;  
+    margin: 5px;
     background-color: ${(props) => props.theme.cardBg};
     color: ${(props) => props.theme.color};
     text-transform: capitalize;
-    padding: 20px;
-    border-radius: 15px;
+    padding: 5px 5px 15px;
+    border-radius: 10px;
     box-shadow: 0 3px 5px ${(props)=> props.theme.color}5d;
     cursor: pointer;
-    height: 100px;
     transition: 0.4s ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 10px;
-    text-decoration: none;
+    border: 3px solid ${(props) => props.theme.color};
+    text-align: center;
 `
-const H2 = styled.h2`
-    font-size: 16px;
-    text-decoration: none;
+
+const Name = styled.h2`
+    font-size: 14px;
+    margin: 10px
 `
+
+const Subtitle = styled.p`
+    text-align: start;
+    margin-left: 15px;
+    line-height: 6px;
+    font-weight: 300;    
+`
+
 const Btn = styled.button`
     border: none;
     margin: 0 0 50px;
