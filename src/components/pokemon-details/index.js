@@ -12,7 +12,6 @@ import { getTypes } from '../../services/type';
 
 import { pokemon } from '../objects/pokemon';
 
-
 export const PokemonDetails = () => {
     const { theme } = useContext(ThemeContext)
     
@@ -40,7 +39,7 @@ export const PokemonDetails = () => {
                 })
         }
         fetchData()
-    },[])
+    },[id])
 
 
     return(
@@ -52,47 +51,48 @@ export const PokemonDetails = () => {
                 <Image>
                     <Img src={info.data.image}/>
                 </Image>
-                <div>
+                <Infos>
                     <Name>{info.data.name}</Name>
                     <Ul>
                         {
                             info.data.type.map((type, index)=>{
                                 return(
                                     
-                                    <Type key={index} theme={theme}>{type}</Type>
+                                    <Type key={index} theme={theme} type={type}>{type}</Type>
                                 )
                             })
                         }
                     </Ul>
                     
-                    <H3>Habilidades</H3>
-                    <Ul>
-                        {
-                            info.data.abilities.map((abilities, index)=>{
-                                return(
-                                    
-                                    <Li key={index}>
-                                        <h4>{abilities.name}</h4>
-                                        <p>{abilities.description}</p>
-                                    
-                                    </Li>
-                                )
-                            })
-                        }
-                    </Ul>
-        
-                    <H3>Movimentos</H3>
-                    <Ul>
-                        {
-                            info.data.moves.map((moves, index)=>{
-                                return(
-                                    
-                                    <Li key={index}>{moves}</Li>
-                                )
-                            })
-                        }
-                    </Ul>
-                </div>
+                        <Title>Abilities</Title>
+                        <Ul>
+                            {
+                                info.data.abilities.map((abilities, index)=>{
+                                    return(
+                                        
+                                        <Li key={index}>
+                                            <h4>{abilities.name}</h4>
+                                            <p>{abilities.description}</p>
+                                        
+                                        </Li>
+                                    )
+                                })
+                            }
+                        </Ul>
+            
+                        <Title>Moves</Title>
+                        <Ul>
+                            {
+                                info.data.moves.map((moves, index)=>{
+                                    return(
+                                        
+                                        <Li key={index}><p>{moves}</p></Li>
+                                    )
+                                })
+                            }
+                        </Ul>
+                    
+                </Infos>
                 
             </Card>
         </Container>
@@ -111,12 +111,11 @@ const Container = styled.div`
 const Card = styled.div`
     background-color: ${(props) => props.theme.cardBg};
     color: ${(props) => props.theme.color};
-    text-align: center;
-    padding: 20px;
+    padding: 15px;
     border-radius: 25px;
     box-shadow: 0 3px 5px ${(props)=> props.theme.color}5d;
-    transition: 0.4s ease-in-out;
     display: flex;
+    align-items: center;
 `
 
 const Icon = styled.i`
@@ -134,45 +133,64 @@ const Image = styled.div`
     border-radius: 10px;
     border: 2px solid rgb(149, 149, 149);
     background-color: #e0e0e0;
-    width: 400px;
+    width: 350px;
     height: 350px;
+    margin-right: 20px;
 `
 
 const Img = styled.img`
     object-fit: cover;
-    width: 80%;
+    max-width: 80%;
+    max-height: 90%;
+`
+
+const Infos = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `
 
 const Name = styled.h2`
-    font-size: 40px;
+    font-size: 30px;
     text-transform: capitalize;
 `
 
 const Ul = styled.ul`
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
-    max-width: 400px;
+    max-width: 320px;
+    margin-bottom: 15px;
 `
+
 const Type = styled.li`
     padding: 5px 20px;
     list-style: none;
     border-radius: 25px;
-    background-color: ${(props)=> props.theme.type.{type}};
-    text-transform: capitalize;x'
-    font-weight: 600;
+    background-color: ${(props)=> props.theme.type[props.children]};
+    text-transform: capitalize;
+    font-weight: 700;
     color: #ffff;
-    margin: 5px;
+    font-size: 16px;
+    margin: 0 5px;
 `
 
-const H3 = styled.h2`
-    font-size: 16px;
-    margin-top: 10px;
+const Title = styled.h2`
+    font-size: 20px;
     text-transform: capitalize;
+    align-self: flex-start;
 `
 
 const Li = styled.li`
     list-style: none;
-    margin: 0 10px;
+
+    h4{
+        text-transform: capitalize;
+    }
+
+    p{
+        color:#706c6c;
+        font-size: 13px;
+        margin-right: 10px;
+    }
 `

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
@@ -9,12 +9,16 @@ import { ThemeContext } from '../../contexts/theme-context'
 export const CardsList = () => {
     const { theme } = useContext(ThemeContext)
 
-    
-    async function getPokemons(){
-    
+    const [quantity, setQuantity] = useState(10)
+    const [list, setList] = useState({
+        cards: []
+    })
+
+    const getPokemons = useCallback(async()=>{
+
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${quantity}`)
         const responseJson = await response.json()
-
+    
         
         const pokemonData = await Promise.all(
             responseJson.results.map(async (infos)=>{
@@ -27,13 +31,7 @@ export const CardsList = () => {
     
         );
         return pokemonData
-    };
-
-    const [quantity, setQuantity] = useState(10)
-
-    const [list, setList] = useState({
-        cards: []
-    })
+    },[quantity])
 
     useEffect(()=>{
         const fetchData = async ()=>{
@@ -43,7 +41,7 @@ export const CardsList = () => {
             })            
         }
         fetchData()
-    },[quantity])
+    },[getPokemons])
 
     return(
         <>
@@ -54,7 +52,7 @@ export const CardsList = () => {
                             <StyledLink to = {`/pokemon/${pokemon.name}`} key={index} >
                                 <Card theme={theme}>
                                     <DivImg>
-                                        <img src={pokemon.image}/>
+                                        <img src={pokemon.image} alt='pokemon'/>
                                     </DivImg>
                                     <Name>{pokemon.name}</Name>
                                     <Subtitle>__ _ ___ _ _____ _ _ __ __ _ __ _ ___ ____ _ __ _ __ __ _ ___ __ _ _ _ __ __</Subtitle>

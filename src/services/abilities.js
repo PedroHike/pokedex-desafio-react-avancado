@@ -11,7 +11,7 @@ export async function getAbilities(pokemon){
             const abilityDetail = await (await fetch(ability.ability.url)).json()
 
             const description = abilityDetail.effect_entries.filter((description)=>{
-                return description.language.name == 'en'
+                return description.language.name === 'en'
             })
             
             return {
