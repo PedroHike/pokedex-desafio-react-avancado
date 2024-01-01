@@ -20,29 +20,6 @@ export const themes = {
             background: '#ffe60088',
             color: '#0391c5'
         },
-
-        type: {
-            "normal": "#A8A878",
-            "fire": "#F08030",
-            "water": "#6890F0",
-            "electric": "#F8D030",
-            "grass": "#78C850",
-            "ice": "#98D8D8",
-            "fighting": "#C03028",
-            "poison": "#A040A0",
-            "ground": "#E0C068",
-            "flying": "#A890F0",
-            "psychic": "#F85888",
-            "bug": "#A8B820",
-            "rock": "#B8A038",
-            "ghost": "#705898",
-            "dragon": "#7038F8",
-            "dark": "#705848",
-            "steel": "#B8B8D0",
-            "fairy": "#EE99AC",
-            "unknown": "#68A090",
-            "shadow": "#604E82"
-        }
     },
 
     dark: {
@@ -57,7 +34,6 @@ export const themes = {
             transform: 'translateX(24px)',
         },
 
-
         cardBg: '#1E1E1E',
         color:'#ffffff',
         background: '#171717',
@@ -66,30 +42,30 @@ export const themes = {
             background: '#27ae60',
             color: '#FFFF'
         },
-
-        type: {
-            "normal": "#A8A878",
-            "fire": "#F08030",
-            "water": "#6890F0",
-            "electric": "#F8D030",
-            "grass": "#78C850",
-            "ice": "#98D8D8",
-            "fighting": "#C03028",
-            "poison": "#A040A0",
-            "ground": "#E0C068",
-            "flying": "#A890F0",
-            "psychic": "#F85888",
-            "bug": "#A8B820",
-            "rock": "#B8A038",
-            "ghost": "#705898",
-            "dragon": "#7038F8",
-            "dark": "#705848",
-            "steel": "#B8B8D0",
-            "fairy": "#EE99AC",
-            "unknown": "#68A090",
-            "shadow": "#604E82"
-        }
     }
+}
+
+const types = {
+    "normal": "#A8A878",
+    "fire": "#F08030",
+    "water": "#6890F0",
+    "electric": "#F8D030",
+    "grass": "#78C850",
+    "ice": "#98D8D8",
+    "fighting": "#C03028",
+    "poison": "#A040A0",
+    "ground": "#E0C068",
+    "flying": "#A890F0",
+    "psychic": "#F85888",
+    "bug": "#A8B820",
+    "rock": "#B8A038",
+    "ghost": "#705898",
+    "dragon": "#7038F8",
+    "dark": "#705848",
+    "steel": "#B8B8D0",
+    "fairy": "#EE99AC",
+    "unknown": "#68A090",
+    "shadow": "#604E82"
 }
 
 
@@ -100,12 +76,8 @@ export const ThemeProvider = ({children})=>{
     const [theme, setTheme] = useState(themes.light)
 
     return(
-        <ThemeContext.Provider value={{theme, setTheme}}>
+        <ThemeContext.Provider value={{theme, setTheme, types}}>
             {children}
         </ThemeContext.Provider>
     )
 }
-
-export const useMyContext = () => {
-    return useContext(ThemeContext);
-};

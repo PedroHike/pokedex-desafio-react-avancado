@@ -44,12 +44,12 @@ export const CardsList = () => {
     },[getPokemons])
 
     return(
-        <>
+        <CardContainer>
             <Ul>
                 {
                     list.cards.map((pokemon, index)=>{
                         return(
-                            <StyledLink to = {`/pokemon/${pokemon.name}`} key={index} >
+                            <Link to = {`/pokemon/${pokemon.name}`} key={index} >
                                 <Card theme={theme}>
                                     <DivImg>
                                         <img src={pokemon.image} alt='pokemon'/>
@@ -57,7 +57,7 @@ export const CardsList = () => {
                                     <Name>{pokemon.name}</Name>
                                     <Subtitle>__ _ ___ _ _____ _ _ __ __ _ __ _ ___ ____ _ __ _ __ __ _ ___ __ _ _ _ __ __</Subtitle>
                                 </Card>
-                            </StyledLink>
+                            </Link>
                         )
                     })
                 }
@@ -67,22 +67,21 @@ export const CardsList = () => {
                 setQuantity(quantity+10)
             }} theme={theme}> Carregar mais</Btn>
 
-        </>
+        </CardContainer>
     )
 }
+
+const CardContainer = styled.div`
+    padding: 20px;
+`
 
 const Ul = styled.ul`
     margin: 0 auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 30px;
+    padding: 0 30px 30px;
     max-width: 750px;
-`
-
-const StyledLink = styled(Link)`
-    text-decoration: none;
-    color: #000;
 `
 
 const Card = styled.li`
@@ -117,9 +116,9 @@ const DivImg = styled.div`
 const Name = styled.h2`
     font-size: 16px;
     margin-top: 10px;
-    `
-    
-    const Subtitle = styled.p`
+`
+
+const Subtitle = styled.p`
     text-align: start;
     padding: 5px 5px 0;
     font-size: 16px;
@@ -129,12 +128,10 @@ const Name = styled.h2`
 
 const Btn = styled.button`
     border: none;
-    margin: 0 0 50px;
     padding: 10px 15px;
     border-radius: 20px;
     background-color: ${(props) => props.theme.btn.background};
     color: ${(props) => props.theme.btn.color};
-    background-color: ;
     font-weight: 500;
     border: 1px solid #ffff;
     box-shadow: 0 2px 5px #aae6ec;

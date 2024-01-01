@@ -13,7 +13,7 @@ import { getTypes } from '../../services/type';
 import { pokemon } from '../objects/pokemon';
 
 export const PokemonDetails = () => {
-    const { theme } = useContext(ThemeContext)
+    const { theme, types } = useContext(ThemeContext)
     
     const {id} = useParams()
     
@@ -58,7 +58,8 @@ export const PokemonDetails = () => {
                             info.data.type.map((type, index)=>{
                                 return(
                                     
-                                    <Type key={index} theme={theme} type={type}>{type}</Type>
+                                    <Type key={index} theme={types}>{type}</Type>
+                                    
                                 )
                             })
                         }
@@ -167,10 +168,10 @@ const Type = styled.li`
     padding: 5px 20px;
     list-style: none;
     border-radius: 25px;
-    background-color: ${(props)=> props.theme.type[props.children]};
+    background-color: ${(props)=> props.theme[props.children]};
     text-transform: capitalize;
     font-weight: 700;
-    color: #ffff;
+    color: #fff;
     font-size: 16px;
     margin: 0 5px;
 `
