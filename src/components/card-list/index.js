@@ -53,7 +53,7 @@ export const CardsList = () => {
                 <option value={'poison'}>Poison</option>
                 <option value={'ground'}>Ground</option>
                 <option value={'flying'}>Flying</option>
-                <option value={'psychc'}>Psychc</option>
+                <option value={'psychic'}>Psychic</option>
                 <option value={'bug'}>Bug</option>
                 <option value={'rock'}>Rock</option>
                 <option value={'ghost'}>Ghost</option>
@@ -61,8 +61,6 @@ export const CardsList = () => {
                 <option value={'dark'}>Dark</option>
                 <option value={'steel'}>Steel</option>
                 <option value={'fairy'}>Fairy</option>
-                <option value={'unknown'}>Unknown</option>
-                <option value={'shadow'}>Shadow</option>
             </Select>
             <Ul>
                 {
