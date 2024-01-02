@@ -7,12 +7,11 @@ export const DefaultList = async(quantity)=>{
     const pokemonData = await Promise.all(
         responseJson.results.map(async (infos)=>{
             const dataResponse = await (await fetch(infos.url)).json()
-        return{
-            name: infos.name,
-            image: dataResponse.sprites.versions["generation-v"]["black-white"].animated.front_default
-        };
-    })
-
+            return{
+                name: infos.name,
+                image: dataResponse.sprites.versions["generation-v"]["black-white"].animated.front_default
+            };
+        })
     );
     return pokemonData
 }

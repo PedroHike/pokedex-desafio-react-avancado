@@ -11,26 +11,37 @@ import { quantity } from "../variables";
 export const CardsList = () => {
     const { theme } = useContext(ThemeContext)
 
+    
     const [limit, setLimit] = useState(quantity)
+    const [selectedType, setSelectedType] = useState('default');
     const [list, setList] = useState({
         cards: []
     })
 
+
     useEffect(()=>{
         const fetchData = async ()=>{
-            const data = await DefaultList(limit);
+            const allPokemons = await DefaultList(limit);
+            const typePokemon = await HandleSelectChange(selectedType, limit)
+            let data = []
 
+            if(selectedType==='default'){
+                data = allPokemons
+            }else{
+                data = typePokemon
+            }
             setList({
                 cards: data
             })            
+            
         }
         fetchData()
-    },[limit])
+    },[limit, selectedType])
 
     return(
         <CardContainer>
             <Label htmlFor='Type' theme= {theme}>Select type</Label>
-            <Select theme= {theme} onChange={HandleSelectChange}>
+            <Select theme= {theme} onChange={(e)=>{setSelectedType(e.target.value);}}>
                 <option value={'default'}>Default</option>
                 <option value={'normal'}>Normal</option>
                 <option value={'fire'}>Fire</option>
@@ -59,9 +70,9 @@ export const CardsList = () => {
                         return(
                             <Link to = {`/pokemon/${pokemon.name}`} key={index} >
                                 <Card theme={theme}>
-                                    <DivImg>
+                                    <ImgContainer>
                                         <img src={pokemon.image} alt='pokemon'/>
-                                    </DivImg>
+                                    </ImgContainer>
                                     <Name>{pokemon.name}</Name>
                                     <Subtitle>__ _ ___ _ _____ _ _ __ __ _ __ _ ___ ____ _ __ _ __ __ _ ___ __ _ _ _ __ __</Subtitle>
                                 </Card>
@@ -123,11 +134,11 @@ const Card = styled.li`
     text-align: center;
     &:hover{
         transform: scale(1.1);
-        box-shadow: 0 3px 10px ${(props)=> props.theme.color};
+        box-shadow: 0 5px 7px ${(props)=> props.theme.color}9c;
     }
 `
 
-const DivImg = styled.div`
+const ImgContainer = styled.div`
     background-color: #e0e0e0;
     width: 110px;
     height: 110px;
