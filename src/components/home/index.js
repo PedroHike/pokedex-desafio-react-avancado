@@ -4,7 +4,6 @@ import { CardsList } from "../card-list"
 
 import React, { useContext } from "react"
 import { ThemeContext } from '../../contexts/theme-context'
-import { FilterType } from "../filter-type-pokemon"
 
 export const HomePage = ()=>{
     const { theme } = useContext(ThemeContext)
@@ -12,7 +11,6 @@ export const HomePage = ()=>{
     return(
         <StyledDiv theme={theme}>
             <Header/>
-            <FilterType/>
             <CardsList/>
         </StyledDiv>
     )

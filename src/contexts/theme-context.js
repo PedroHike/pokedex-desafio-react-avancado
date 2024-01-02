@@ -1,8 +1,8 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState} from "react";
 
 export const themes = {
     light: {
-        mainBg: '#EBF3E8',
+        mainBg: '#efefef',
 
         btnToggler: {
             togglerBg: '#c5e6f1',

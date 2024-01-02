@@ -1,50 +1,58 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useContext, useState, useEffect } from "react"
 import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
-
-import React, { useContext } from "react"
 import { ThemeContext } from '../../contexts/theme-context'
+
+import { DefaultList } from "../../services/default-list";
+import { HandleSelectChange } from "../../services/filtered-pokemons";
+import { quantity } from "../variables";
 
 export const CardsList = () => {
     const { theme } = useContext(ThemeContext)
 
-    const [quantity, setQuantity] = useState(10)
+    const [limit, setLimit] = useState(quantity)
     const [list, setList] = useState({
         cards: []
     })
 
-    const getPokemons = useCallback(async()=>{
-
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${quantity}`)
-        const responseJson = await response.json()
-    
-        
-        const pokemonData = await Promise.all(
-            responseJson.results.map(async (infos)=>{
-                const dataResponse = await (await fetch(infos.url)).json()
-            return{
-                name: infos.name,
-                image: dataResponse.sprites.versions["generation-v"]["black-white"].animated.front_default
-            };
-        })
-    
-        );
-        return pokemonData
-    },[quantity])
-
     useEffect(()=>{
         const fetchData = async ()=>{
-            const data = await getPokemons();
+            const data = await DefaultList(limit);
+
             setList({
                 cards: data
             })            
         }
         fetchData()
-    },[getPokemons])
+    },[limit])
 
     return(
         <CardContainer>
+            <Label htmlFor='Type' theme= {theme}>Select type</Label>
+            <Select theme= {theme} onChange={HandleSelectChange}>
+                <option value={'default'}>Default</option>
+                <option value={'normal'}>Normal</option>
+                <option value={'fire'}>Fire</option>
+                <option value={'water'}>Water</option>
+                <option value={'electric'}>Electric</option>
+                <option value={'grass'}>Grass</option>
+                <option value={'ice'}>Ice</option>
+                <option value={'fighting'}>Fighting</option>
+                <option value={'poison'}>Poison</option>
+                <option value={'ground'}>Ground</option>
+                <option value={'flying'}>Flying</option>
+                <option value={'psychc'}>Psychc</option>
+                <option value={'bug'}>Bug</option>
+                <option value={'rock'}>Rock</option>
+                <option value={'ghost'}>Ghost</option>
+                <option value={'dragon'}>Dragon</option>
+                <option value={'dark'}>Dark</option>
+                <option value={'steel'}>Steel</option>
+                <option value={'fairy'}>Fairy</option>
+                <option value={'unknown'}>Unknown</option>
+                <option value={'shadow'}>Shadow</option>
+            </Select>
             <Ul>
                 {
                     list.cards.map((pokemon, index)=>{
@@ -64,7 +72,7 @@ export const CardsList = () => {
             </Ul>
 
             <Btn onClick={()=>{
-                setQuantity(quantity+10)
+                setLimit(limit+10)
             }} theme={theme}> Carregar mais</Btn>
 
         </CardContainer>
@@ -75,12 +83,27 @@ const CardContainer = styled.div`
     padding: 20px;
 `
 
+const Label = styled.label`
+    color: ${(props) => props.theme.color};
+    font-weight: 600;
+    transition: 0.4s ease-in-out;
+`
+
+const Select = styled.select`
+    margin-left: 10px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    color: ${(props) => props.theme.color};
+    background-color: ${(props) => props.theme.cardBg};
+    transition: 0.4s ease-in-out;
+`
+
 const Ul = styled.ul`
     margin: 0 auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 0 30px 30px;
+    padding: 30px;
     max-width: 750px;
 `
 
@@ -93,18 +116,22 @@ const Card = styled.li`
     text-transform: capitalize;
     padding: 5px 5px 15px;
     border-radius: 10px;
-    box-shadow: 0 3px 5px ${(props)=> props.theme.color}5d;
     cursor: pointer;
-    transition: 0.4s ease-in-out;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 1px 5px ${(props)=> props.theme.color}80;
     gap: 10px;
-    border: 3px solid ${(props) => props.theme.color};
     text-align: center;
+    &:hover{
+        transform: scale(1.1);
+        box-shadow: 0 3px 10px ${(props)=> props.theme.color};
+    }
 `
 
 const DivImg = styled.div`
     background-color: #e0e0e0;
     width: 110px;
     height: 110px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,9 +160,11 @@ const Btn = styled.button`
     background-color: ${(props) => props.theme.btn.background};
     color: ${(props) => props.theme.btn.color};
     font-weight: 500;
-    border: 1px solid #ffff;
-    box-shadow: 0 2px 5px #aae6ec;
     cursor: pointer;
     font-size: 16px;
-    transition: 0.4s ease-in-out;
+    transition: 0.3s ease-in-out;
+    &:hover{
+    transform: scale(1.03);
+    box-shadow: 0 2px 5px ${(props) => props.theme.color};
+    }
 `
