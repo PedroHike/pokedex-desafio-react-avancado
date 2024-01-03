@@ -121,6 +121,7 @@ const Card = styled.div`
     display: flex;
     align-items: center;
     transition: 0.3s ease-in-out;
+    margin-top: 50px;
     @media (max-width: 768px){
         flex-direction: column;
     }

@@ -15,10 +15,9 @@ export const Header = ()=>{
 
 const Img = styled.img`
     width: 400px;
-    margin: 30px auto;
-    background-color: red;
+    margin: 30px auto 0;
     @media (max-width: 768px){
-        width: 250px;
+        width: 150px;
     }
 `
 

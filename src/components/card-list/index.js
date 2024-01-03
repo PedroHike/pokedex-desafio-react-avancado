@@ -36,7 +36,7 @@ export const CardsList = () => {
     },[limit, selectedType])
 
     return(
-        <CardContainer>
+        <div>
             <Label htmlFor='Type' theme= {theme}>Select type</Label>
             <Select theme= {theme} onChange={(e)=>{setSelectedType(e.target.value);}}>
                 <option value={'default'}>Default</option>
@@ -81,42 +81,46 @@ export const CardsList = () => {
                 setLimit(limit+10)
             }} theme={theme}> Carregar mais</Btn>
 
-        </CardContainer>
+        </div>
     )
 }
-
-const CardContainer = styled.div`
-    padding: 20px;
-`
 
 const Label = styled.label`
     color: ${(props) => props.theme.color};
     font-weight: 600;
     transition: 0.4s ease-in-out;
+    @media (max-width: 450px){
+        font-size: 14px;
+    }
 `
 
 const Select = styled.select`
-    margin-left: 10px;
+    margin: 10px;
     padding: 3px 10px;
     border-radius: 10px;
     color: ${(props) => props.theme.color};
     background-color: ${(props) => props.theme.cardBg};
     transition: 0.4s ease-in-out;
+    @media (max-width: 450px){
+        font-size: 12px;
+    }
 `
 
 const Ul = styled.ul`
-    margin: 0 auto;
+    margin: 30px auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 30px;
     max-width: 750px;
+    @media (max-width: 450px){
+        padding: 15px;
+        margin: 15px auto;
+    }
 `
 
 const Card = styled.li`
     list-style: none;  
     margin: 5px;
-    width: 125px;
     background-color: ${(props) => props.theme.cardBg};
     color: ${(props) => props.theme.color};
     text-transform: capitalize;
@@ -144,11 +148,23 @@ const ImgContainer = styled.div`
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
     border: 2px solid rgb(149, 149, 149);
+    @media (max-width: 450px){
+        width: 70px;
+        height: 70px;
+        & img{
+            width: 80%;
+        }
+    }
 `
 
 const Name = styled.h2`
     font-size: 16px;
     margin-top: 10px;
+    @media (max-width: 768px){  
+        font-size: 12px;
+        width: 70px;
+    }
+
 `
 
 const Subtitle = styled.p`
@@ -157,6 +173,11 @@ const Subtitle = styled.p`
     font-size: 16px;
     font-weight: 200;
     line-height: 5px;
+    max-width: 110px;
+    @media (max-width: 450px){
+        max-width: 70px;
+        font-size: 10px;
+    }
 `
 
 const Btn = styled.button`
@@ -169,8 +190,9 @@ const Btn = styled.button`
     cursor: pointer;
     font-size: 16px;
     transition: 0.3s ease-in-out;
+    margin-bottom: 30px;
     &:hover{
-    transform: scale(1.03);
-    box-shadow: 0 2px 5px ${(props) => props.theme.color};
+        transform: scale(1.03);
+        box-shadow: 0 2px 5px ${(props) => props.theme.color};
     }
 `
