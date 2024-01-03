@@ -121,6 +121,9 @@ const Card = styled.div`
     display: flex;
     align-items: center;
     transition: 0.3s ease-in-out;
+    @media (max-width: 768px){
+        flex-direction: column;
+    }
 `
 
 const Icon = styled.i`

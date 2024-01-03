@@ -25,11 +25,8 @@ export const CardsList = () => {
             const typePokemon = await HandleSelectChange(selectedType, limit)
             let data = []
 
-            if(selectedType==='default'){
-                data = allPokemons
-            }else{
-                data = typePokemon
-            }
+            selectedType==='default' ? data = allPokemons : data = typePokemon
+            
             setList({
                 cards: data
             })            
