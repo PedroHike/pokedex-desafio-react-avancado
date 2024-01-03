@@ -11,6 +11,7 @@ import { getAbilities } from '../../services/abilities';
 import { getTypes } from '../../services/type';
 
 import { pokemon } from '../objects/pokemon';
+import { Header } from '../header';
 
 export const PokemonDetails = () => {
     const { theme, types } = useContext(ThemeContext)
@@ -44,6 +45,7 @@ export const PokemonDetails = () => {
 
     return(
         <Container theme={theme}>
+            <Header/>
             <Card theme={theme}>
                 <Link to='/'>
                     <Icon className="fas fa-arrow-circle-left" theme={theme}></Icon>
@@ -105,8 +107,9 @@ const Container = styled.div`
     width: 100vw;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    transition: 0.3s ease-in-out;
 `
 
 const Card = styled.div`
@@ -117,14 +120,17 @@ const Card = styled.div`
     box-shadow: 0 3px 5px ${(props)=> props.theme.color}5d;
     display: flex;
     align-items: center;
+    transition: 0.3s ease-in-out;
 `
 
 const Icon = styled.i`
-    color: ${(props)=> props.theme.color};
+    color:#706c6c;
     position: fixed;
     top: 20px;
     left: 20px;
     font-size: 30px;
+    transition: 0.3s ease-in-out;
+
 `
 
 const Image = styled.div`
@@ -174,6 +180,7 @@ const Type = styled.li`
     color: #fff;
     font-size: 16px;
     margin: 0 5px;
+    transition: 0.3s ease-in-out;
 `
 
 const Title = styled.h2`

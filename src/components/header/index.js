@@ -15,8 +15,6 @@ export const Header = ()=>{
 
 const Img = styled.img`
     width: 400px;
-    margin: auto;
-    padding: 30px;
-    display: block;
+    margin: 30px auto;
 `
 
