@@ -124,6 +124,11 @@ const Card = styled.div`
     @media (max-width: 768px){
         flex-direction: column;
     }
+
+    @media (max-width: 460px){
+        transform: scale(0.8)
+    }
+
 `
 
 const Icon = styled.i`

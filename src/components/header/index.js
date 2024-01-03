@@ -16,5 +16,8 @@ export const Header = ()=>{
 const Img = styled.img`
     width: 400px;
     margin: 30px auto;
+    @media (max-width: 460px){
+        width: 250px;
+    }
 `
 
