@@ -45,14 +45,14 @@ export const PokemonDetails = () => {
 
     return(
         <Container theme={theme}>
-            <Header/>
-            <Card theme={theme}>
                 <Link to='/'>
                     <Icon className="fas fa-arrow-circle-left" theme={theme}></Icon>
                 </Link>
-                <Image>
+            <Header/>
+            <Card theme={theme}>
+                <ImageContainer>
                     <Img src={info.data.image}/>
-                </Image>
+                </ImageContainer>
                 <Infos>
                     <Name>{info.data.name}</Name>
                     <Ul>
@@ -110,6 +110,9 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     transition: 0.3s ease-in-out;
+    @media (max-width: 450px){
+        
+    }
 `
 
 const Card = styled.div`
@@ -124,6 +127,8 @@ const Card = styled.div`
     margin-top: 50px;
     @media (max-width: 768px){
         flex-direction: column;
+        justify-content: center;
+        margin: 0 0 30px;
     }
 
     @media (max-width: 460px){
@@ -139,10 +144,11 @@ const Icon = styled.i`
     left: 20px;
     font-size: 30px;
     transition: 0.3s ease-in-out;
+    z-index: 1;
 
 `
 
-const Image = styled.div`
+const ImageContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -152,6 +158,11 @@ const Image = styled.div`
     width: 350px;
     height: 350px;
     margin-right: 20px;
+    @media (max-width: 768px){
+        margin: 0;
+        width: 300px;
+        height: 300px;
+    }
 `
 
 const Img = styled.img`

@@ -29,6 +29,7 @@ const Div = styled.div`
     justify-content: center;
     transition: 0.4s ease-in-out;
     cursor: pointer;
+    z-index: 1;    
 
     & .btn{
         z-index: 1;
