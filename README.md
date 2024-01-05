@@ -1,70 +1,94 @@
-# Getting Started with Create React App
+# Desafio React avançado
+Esse desafio consite em um pokedex onde a página inicial contenha 10 cards pokemons contendo uma imagem e nome dos pokemons 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Funcionalidades
+As funcionalidades exigidas nesse desafio são
 
-## Available Scripts
+- Botão de mudança de tema claro e escuro
+![mudança de tema](image.png)
 
-In the project directory, you can run:
+- Botão que ao ser clicado, carrega mais 10 pokémons.
+![botão carregar mais](image-1.png)
 
-### `npm start`
+- Ao clicar no card do pokémon, da acesso ao detalhamento do mesmo, com nome, imagem, habilidades com descrição de cada uma, e movimentos.
+![detalhamento](src/assents/images/detalhamento.gif)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Como bônus, foi solicitado implementar um select de tipo de pokémon, onde filtra os pokémons pelo tipo.
+![selecionador filtro](image-2.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Ferramentas Utilizadas
+Nesse desafio foi utilizado a seguintes ferramentas:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React (usando create-react-app)
+- Styled Components para a estilização
+- SPA com react-router-dom
+- Context API para criação de botão de troca de tema e adição das cores de tipo de pokémon.
 
-### `npm run build`
+## Decisões Adotadas
+O passo a passo para a criação desse desafio foi:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Criação da estrutura react:** Escluindo todos os arquivos que não seriam utilizados.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Inicialmente foi criado o a pagina inicial:** Trabalhando com a API do pokedex, efetuando o fetch e separando as informações necessárias.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Trabalhar com o Context API e o botão de Tema:** Começando com a criação do botão de troca de tema, dando a ideia de um sol e lua. Após isso, passar as informações do context para o botão.
 
-### `npm run eject`
+- **Adicionado o tema para os demais componentes:** Apos criação do botão, do apliquei o context API aos componentes conforme o tema.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Criação do botão para carregar mais:** Adicionado o botão onde alterava a variável de quantidade de pokémons solicitádos.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Criação das rotas:** Adicionando a funcionalidade de rotas.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Criação da página de detalhamento:** Criado arquivos de serviços onde foi implementado a solicitação de cada informação solicitada e implementado ao componete de detalhes.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Criação do filtro:** Após as solicitações obrigatórias serem realizadas, foi criado o select onde foi implementado o filtro baseado no texto selecionado.
 
-## Learn More
+- **Estilização com componentes:** A estilização foi efetuada no decorrer do projeto para melhor visualização das informações.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Passo a Passo para Execução
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Para que o projeto rode localmente, será necessário estar com VSCode.
 
-### Code Splitting
+1. **Pré-requisitos:**
+   - Instale [Nome da Ferramenta 1] seguindo as instruções em [link].
+   - Configure [Nome da Ferramenta 2] de acordo com [instruções].
+   - ...
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. **Clone o Repositório:**
+   ```bash
+   git clone https://github.com/seu-usuario/nome-do-projeto.git
+   ```
 
-### Analyzing the Bundle Size
+3. **Acesse o Diretório:**
+   ```bash
+   cd nome-do-projeto
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+4. **Instale as Dependências:**
+   ```bash
+   npm install   # ou yarn install, dependendo do gerenciador de pacotes
+   ```
 
-### Making a Progressive Web App
+5. **Configure as Variáveis de Ambiente:**
+   - Crie um arquivo `.env` na raiz do projeto e adicione as variáveis necessárias.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+6. **Execute a Aplicação:**
+   ```bash
+   npm start   # ou yarn start
+   ```
 
-### Advanced Configuration
+7. **Acesse a Aplicação:**
+   Abra o navegador e acesse [http://localhost:3000](http://localhost:3000).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Contribuições
 
-### Deployment
+Explique como outras pessoas podem contribuir para o projeto. Isso pode incluir informações sobre como reportar bugs, sugerir melhorias, ou enviar pull requests.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Licença
 
-### `npm run build` fails to minify
+Indique a licença sob a qual o projeto está disponibilizado. Exemplo: Este projeto está licenciado sob a [Licença MIT](link).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+Sinta-se à vontade para personalizar este modelo de README conforme as necessidades específicas do seu projeto.
