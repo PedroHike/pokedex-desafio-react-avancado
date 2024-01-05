@@ -1,20 +1,23 @@
 # Desafio React avançado
-Esse desafio consite em um pokedex onde a página inicial contenha 10 cards pokemons contendo uma imagem e nome dos pokemons 
+Esse desafio consite em um pokedex onde a página inicial contenha 10 cards pokemons contendo uma imagem e nome dos pokemons.
+
+Tive vários desafios enfrentados, Os mais complicados foram, como por exemplo, achar imagens que estavam mais a fundo na API
+Separar cada informação para depois estruturar como uma coisa só.
 
 ## Funcionalidades
 As funcionalidades exigidas nesse desafio são
 
 - Botão de mudança de tema claro e escuro
-![mudança de tema](image.png)
+![mudança de tema](src/assents/images/mudança%20de%20tema.gif)
 
 - Botão que ao ser clicado, carrega mais 10 pokémons.
-![botão carregar mais](image-1.png)
+![botão carregar mais](src/assents/images/botao-carregar-mais.gif)
 
 - Ao clicar no card do pokémon, da acesso ao detalhamento do mesmo, com nome, imagem, habilidades com descrição de cada uma, e movimentos.
 ![detalhamento](src/assents/images/detalhamento.gif)
 
 - Como bônus, foi solicitado implementar um select de tipo de pokémon, onde filtra os pokémons pelo tipo.
-![selecionador filtro](image-2.png)
+![selecionador filtro](src/assents/images/selecionador-por-tipo.gif)
 
 
 ## Ferramentas Utilizadas
@@ -51,14 +54,17 @@ O passo a passo para a criação desse desafio foi:
 Para que o projeto rode localmente, será necessário estar com VSCode.
 
 1. **Pré-requisitos:**
-   - Instale [Nome da Ferramenta 1] seguindo as instruções em [link].
-   - Configure [Nome da Ferramenta 2] de acordo com [instruções].
-   - ...
+   - Vs Code para leitura do arquivo
+   - Git Bash - Ferramenta de versionamento
+   - Npm ou Yarn - controle de pacotes
 
 2. **Clone o Repositório:**
+   Dentro da pasta onde quer baixar o projeto, abrir o git e efetuar o comando
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-projeto.git
+   git clone https://github.com/PedroHike/desafio-react-avancado.git
    ```
+   - É possível também baixar o arquivo! e desconpactar localmente ![imagem](src/assents/images/onde-baixar.png)
+   
 
 3. **Acesse o Diretório:**
    ```bash
@@ -66,12 +72,13 @@ Para que o projeto rode localmente, será necessário estar com VSCode.
    ```
 
 4. **Instale as Dependências:**
+
    ```bash
    npm install   # ou yarn install, dependendo do gerenciador de pacotes
    ```
 
 5. **Configure as Variáveis de Ambiente:**
-   - Crie um arquivo `.env` na raiz do projeto e adicione as variáveis necessárias.
+   - Crie um arquivo `.env` na raiz do projeto e adicione as variáveis, se necessárias.
 
 6. **Execute a Aplicação:**
    ```bash
@@ -83,12 +90,4 @@ Para que o projeto rode localmente, será necessário estar com VSCode.
 
 ## Contribuições
 
-Explique como outras pessoas podem contribuir para o projeto. Isso pode incluir informações sobre como reportar bugs, sugerir melhorias, ou enviar pull requests.
-
-## Licença
-
-Indique a licença sob a qual o projeto está disponibilizado. Exemplo: Este projeto está licenciado sob a [Licença MIT](link).
-
----
-
-Sinta-se à vontade para personalizar este modelo de README conforme as necessidades específicas do seu projeto.
+Fiquem avontade para implementarem mais funcionalidades, correções de eventuais bugs que forem encontrados, ou até mesmo limpar mais o código
