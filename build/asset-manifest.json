@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/desafio-react-avancado/static/js/main.fec044e9.js",
-    "index.html": "/desafio-react-avancado/index.html",
-    "main.fec044e9.js.map": "/desafio-react-avancado/static/js/main.fec044e9.js.map"
+    "main.js": "/pokedex-desafio-react-avancado/static/js/main.ade0a615.js",
+    "index.html": "/pokedex-desafio-react-avancado/index.html",
+    "main.ade0a615.js.map": "/pokedex-desafio-react-avancado/static/js/main.ade0a615.js.map"
   },
   "entrypoints": [
-    "static/js/main.fec044e9.js"
+    "static/js/main.ade0a615.js"
   ]
 }
