@@ -3,7 +3,7 @@ import { HomePage } from "../home"
 import { PokemonDetails } from "../pokemon-details"
 
 export const AppRoutes = () => (
-    <BrowserRouter basename="/pokedex-desafio-react-avancado">
+    <BrowserRouter basename="/pokedex-desafio-react-avancado/">
         <Routes>
             <Route exact path='/' element={<HomePage/>}/>
             <Route exact path='/pokemon/:id' element={<PokemonDetails/>}/>
