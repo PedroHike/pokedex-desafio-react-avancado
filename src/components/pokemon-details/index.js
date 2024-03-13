@@ -67,7 +67,7 @@ export const PokemonDetails = () => {
                         }
                     </Ul>
                     
-                        <Title>Tessssssteee </Title>
+                        <Title>Abilities </Title>
                         <Ul>
                             {
                                 info.data.abilities.map((abilities, index)=>{
