@@ -82,7 +82,7 @@ Para que o projeto rode localmente, será necessário estar com VSCode.
 
 6. **Execute a Aplicação:**
    ```bash
-   npm start   # ou yarn start
+   npm run dev   # ou yarn run dev
    ```
 
 7. **Acesse a Aplicação:**
